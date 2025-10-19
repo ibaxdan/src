@@ -32,7 +32,6 @@ public class VentaBoletos {
 
     private List<Pasajero> pasajeros = new ArrayList<>();
     public VentaBoletos() {
-        // Acción del botón
         btnComprar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -77,13 +76,11 @@ public class VentaBoletos {
             }
         }
 
-// Si no existe, se crea y se agrega
         if (pasajero == null) {
             pasajero = new Pasajero(cedula, nombre);
             pasajeros.add(pasajero);
         }
 
-// Verificar si puede comprar
         if (!pasajero.puedeComprar(cantidad)) {
             JOptionPane.showMessageDialog(Principal,
                     "Cada cédula solo puede comprar un máximo de 5 boletos.",
@@ -91,7 +88,6 @@ public class VentaBoletos {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        // Determinar ruta seleccionada
         String seleccion = comboRuta.getSelectedItem().toString();
         Ruta ruta = null;
 
@@ -109,11 +105,9 @@ public class VentaBoletos {
             return;
         }
 
-        // Registrar compra
         double total = ruta.getPrecio() * cantidad;
         ruta.vender(cantidad);
         pasajero.agregarBoletos(cantidad);
-        // Mostrar en el TextArea
         areaVentas.append(ruta.getNombre() + " | " + cantidad + " boletos | " +
                 pasajero.getNombre() + " | Total: $" + String.format("%.2f", total) + "\n");
 
